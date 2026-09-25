@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gimbory4u.co.il/sitemap.xml

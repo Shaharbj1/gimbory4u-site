@@ -1,0 +1,17 @@
+{
+  // Gimbory4U – static site on Cloudflare Workers (static assets + a tiny router for "/")
+  "name": "gimbory4u",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // keep the existing .html URLs exactly as they are (no automatic rewriting)
+    "html_handling": "none",
+    // unknown URLs get public/404.html with a real 404 status
+    "not_found_handling": "404-page",
+    // the router only handles the homepage; all other requests go straight to the files
+    "run_worker_first": ["/", "/index.html"]
+  },
+  "observability": { "enabled": true }
+}
