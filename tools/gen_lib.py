@@ -188,7 +188,7 @@ def hero(page, root):
     <p class="hero-subtitle">{page["lead"]}</p>
     <div class="hero-tags">
       <span class="tag tag-green">✓ לגילאי 8 חודשים – 4 שנים</span>
-      <span class="tag tag-green">✓ נקי ומחוטא אחרי כל שימוש</span>
+      <span class="tag tag-green">✓ עובר ניקוי ובמצב מעולה</span>
       <span class="tag tag-blue">📍 {PICKUP}</span>
     </div>
     <div class="hero-cta">
