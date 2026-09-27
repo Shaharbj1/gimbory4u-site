@@ -56,12 +56,19 @@ REVIEWS = [
 ]
 
 
+def img_ver(name):
+    """Short content hash so a replaced photo gets a new URL (images are cached for months)."""
+    import hashlib, pathlib
+    f = pathlib.Path(__file__).resolve().parent.parent / "public" / "images" / f"{name}.webp"
+    return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else "1"
+
+
 def img_tag(name, alt, root, cls="", eager=False, zoom=True):
     w, h, _ = IMG[name]
     classes = " ".join(c for c in [cls, "zoomable" if zoom else ""] if c)
     load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
     cls_attr = ' class="' + classes + '"' if classes else ""
-    return (f'<img src="{root}images/{name}.webp" alt="{escape(alt)}" width="{w}" height="{h}" '
+    return (f'<img src="{root}images/{name}.webp?v={img_ver(name)}" alt="{escape(alt)}" width="{w}" height="{h}" '
             f'{load}{cls_attr}>')
 
 
