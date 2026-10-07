@@ -79,6 +79,11 @@ def business_schema():
         "name": "Gimbory4U",
         "alternateName": ["גימבורי4יו", "Gimbory4U – ג'ימבורי להשכרה לפעוטות"],
         "description": "השכרת ג'ימבורי לפעוטות לימי הולדת ואירועים בבית. איסוף עצמי מקריית עקרון, החל מ-300₪.",
+        "disambiguatingDescription": ("Equipment rental business: soft-play gym sets, safety mats and ball pits "
+                                      "rented to parents for toddler birthday parties at home. Self-pickup from "
+                                      "Kiryat Ekron, Israel. Not a games or gaming website."),
+        "knowsLanguage": ["he", "en"],
+        "keywords": "equipment rental, party rental, toddler soft play rental, children's birthday party supplies",
         "url": f"{SITE}/",
         "telephone": PHONE_TEL,
         "image": f"{SITE}/images/haskarat-gimbori-lepeotot.webp",
@@ -128,7 +133,7 @@ def page_schema(page, root_url):
 #  white article card, blue CTA band, dark footer.
 #  One keyword-named image per page (home: + small gallery).
 # ============================================================
-ASSET_V = "20260927a"   # bump to bust Hostinger CDN cache
+ASSET_V = "20261007a"   # bump to bust Hostinger CDN cache
 
 PACKAGES = [
     {"name": "חבילה בסיסית", "price": 300, "featured": False, "key": "basic",
@@ -357,6 +362,7 @@ def footer(root, cities, guides):
     </div>
     <div class="footer-bottom">
       <p>© 2026 Gimbory4U · <a href="{root}pages/service-areas.html">אזורי שירות</a> · <a href="{root}pages/accessibility-statement.html">הצהרת נגישות</a></p>
+      <p class="footer-en" lang="en" dir="ltr">Gimbory4U – toddler soft-play equipment rental for home birthday parties · Self-pickup, Kiryat Ekron, Israel</p>
     </div>
   </div>
 </footer>
@@ -394,6 +400,7 @@ def render(page, pages_by_slug, cities, guides):
 <title>{page["title"]}</title>
 <meta name="description" content="{escape(page["desc"])}">
 <meta name="robots" content="{page.get("robots", "index, follow, max-image-preview:large")}">
+<meta name="keywords" content="השכרת ציוד לאירועים, השכרת ג'ימבורי, ציוד ליום הולדת, equipment rental, party rental, toddler soft play rental">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">

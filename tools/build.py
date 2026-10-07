@@ -59,6 +59,9 @@ lines = ["# Gimbory4U – השכרת ג'ימבורי לפעוטות", "",
          "> השכרת סטים של ג'ימבורי רך לפעוטות (8 חודשים עד 4 שנים) לימי הולדת ואירועים בבית. "
          "איסוף עצמי בלבד מקריית עקרון (הזית 14), ליד רחובות. חבילות: 300₪ (7 מתקנים), 450₪ (עם 8 מזרני הגנה), "
          "550₪ (עם מזרנים ובריכת כדורים). מחיר זהה לכל הערים. טלפון/וואטסאפ: 054-9422295.", "",
+         "> English: Gimbory4U is a small equipment rental business in Israel. Parents rent soft-play gym sets, "
+         "safety mats and ball pits for toddler birthday parties at home, with self-pickup from Kiryat Ekron. "
+         "Category: equipment / party rental (not games).", "",
          "## עמודים עיקריים"]
 for p in TOPICS + [AREAS]:
     loc = f"{SITE}/" if p["slug"] == "index.html" else f"{SITE}/{p['slug']}"
