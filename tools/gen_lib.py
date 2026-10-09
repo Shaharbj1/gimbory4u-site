@@ -37,6 +37,7 @@ NAV = [
     ("pages/ball-pit-rental.html", "בריכת כדורים", "ballpit"),
     ("pages/service-areas.html", "אזורי שירות", "areas"),
     ("pages/toddler-birthday-checklist.html", "מדריכים", "guides"),
+    ("pages/playgrounds-index.html", "אינדקס משחקיות", "pgindex"),
 ]
 
 PACKAGES = [
