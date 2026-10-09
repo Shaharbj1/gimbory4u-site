@@ -90,6 +90,9 @@ open(f"{OUT}/robots.txt", "w", encoding="utf-8").write(
     "".join(f"User-agent: {b}\n" for b in AI_BOTS) + "Allow: /\n\n"
     "User-agent: *\nAllow: /\n\n"
     "Sitemap: https://gimbory4u.co.il/sitemap.xml\n")
+# Google Search Console verification file (account gimbory4u@gmail.com) - keep it, or verification is lost
+open(f"{OUT}/googleb9345453808673e2.html", "w", encoding="utf-8").write(
+    "google-site-verification: googleb9345453808673e2.html")
 # IndexNow key file (Bing, Yandex and other IndexNow engines)
 open(f"{OUT}/{INDEXNOW_KEY}.txt", "w", encoding="utf-8").write(INDEXNOW_KEY)
 
