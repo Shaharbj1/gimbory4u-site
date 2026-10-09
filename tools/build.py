@@ -93,6 +93,9 @@ open(f"{OUT}/robots.txt", "w", encoding="utf-8").write(
 # Google Search Console verification file (account gimbory4u@gmail.com) - keep it, or verification is lost
 open(f"{OUT}/googleb9345453808673e2.html", "w", encoding="utf-8").write(
     "google-site-verification: googleb9345453808673e2.html")
+# Bing Webmaster Tools verification (account gimbory4u@gmail.com)
+open(f"{OUT}/BingSiteAuth.xml", "w", encoding="utf-8").write(
+    '<?xml version="1.0"?>\n<users>\n\t<user>866E565A3CDD80E7CC49DC056437EB20</user>\n</users>\n')
 # IndexNow key file (Bing, Yandex and other IndexNow engines)
 open(f"{OUT}/{INDEXNOW_KEY}.txt", "w", encoding="utf-8").write(INDEXNOW_KEY)
 

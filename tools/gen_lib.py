@@ -405,6 +405,7 @@ def render(page, pages_by_slug, cities, guides):
 <meta name="description" content="{escape(page["desc"])}">
 <meta name="robots" content="{page.get("robots", "index, follow, max-image-preview:large")}">
 <meta name="keywords" content="השכרת ציוד לאירועים, השכרת ג'ימבורי, ציוד ליום הולדת, equipment rental, party rental, toddler soft play rental">
+<meta name="msvalidate.01" content="866E565A3CDD80E7CC49DC056437EB20">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
