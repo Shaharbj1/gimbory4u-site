@@ -4,7 +4,7 @@ plus the weekly articles list (tools/articles.json) and one page per article."""
 import json, os
 from html import escape
 from collections import Counter
-from gen_lib import PICKUP, PACKAGES, wa, img_tag
+from gen_lib import PICKUP, PACKAGES, wa, img_tag, SITE
 from pages_topics import article
 from playgrounds_data import VENUES, REGION, REGION_ORDER, SOURCES, DATA_UPDATED
 
@@ -270,6 +270,17 @@ INDEX = {
     "img": "haskarat-gimbori-lepeotot", "alt": "אינדקס משחקיות ומתחמי ג'ימבורי לילדים בישראל",
     "card": "אינדקס משחקיות לילדים", "card_sub": "חיפוש לפי עיר",
     "body": index_body,
+    "updated": DATA_UPDATED,
+    "schema_extra": [{
+        "@type": "ItemList", "name": "משחקיות ומתחמי ג'ימבורי לילדים בישראל",
+        "numberOfItems": len(VENUES),
+        "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                             "item": {"@type": "Place", "name": v[0],
+                                      "address": {"@type": "PostalAddress", "addressLocality": v[1],
+                                                  **({"streetAddress": v[2]} if v[2] and v[2] not in v[0] else {}),
+                                                  "addressCountry": "IL"}}}
+                            for i, v in enumerate(VENUES)],
+    }],
     "show_packages": False, "show_steps": False, "show_reviews": False, "show_cta": True,
     "cta_title": "רוצים משחקייה פרטית בבית? בואו נדבר",
     "wa": "היי, הגעתי מאינדקס המשחקיות ואשמח לבדוק זמינות להשכרת ג'ימבורי",
@@ -299,7 +310,15 @@ def _article_page(a):
         "eyebrow": "מאמרים להורים", "h1": a["title"], "lead": a["desc"],
         "img": "haskarat-gimbori-lepeotot", "alt": a["title"], "card": a["title"], "card_sub": "",
         "body": body, "show_packages": False, "show_steps": False, "show_reviews": False, "show_cta": True,
-        "related": [], "faq": [],
+        "related": [], "faq": [], "updated": a["date"],
+        "schema_extra": [{
+            "@type": "BlogPosting", "headline": a["title"], "description": a["desc"],
+            "datePublished": a["date"], "dateModified": a["date"], "inLanguage": "he-IL",
+            "mainEntityOfPage": f"{SITE}/{article_slug(a)}",
+            "image": f"{SITE}/images/haskarat-gimbori-lepeotot.webp",
+            "author": {"@type": "Organization", "name": "Gimbory4U", "url": f"{SITE}/"},
+            "publisher": {"@id": f"{SITE}/#business"},
+        }],
     }
 
 

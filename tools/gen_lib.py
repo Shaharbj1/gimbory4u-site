@@ -5,6 +5,7 @@ from urllib.parse import quote
 from html import escape
 
 SITE = "https://gimbory4u.co.il"
+INDEXNOW_KEY = "f0d8b90fa2234546936e4fe040613bed"
 PHONE_DISPLAY = "054-9422295"
 PHONE_TEL = "+972549422295"
 WA_NUMBER = "972549422295"
@@ -15,7 +16,7 @@ MAPS_URL = "https://maps.google.com/?cid=3609911889483594397"
 FACEBOOK_URL = "https://www.facebook.com/Gimbory4u/"
 RATING = "4.3"
 REVIEW_COUNT = 25
-UPDATED = "2026-09-25"
+UPDATED = "2026-10-09"
 HOURS_TEXT = "א׳–ו׳, 09:00–20:00"
 
 # width/height of generated images (from the image-processing step)
@@ -115,10 +116,12 @@ def page_schema(page, root_url):
     graph.append({"@type": "BreadcrumbList", "itemListElement": crumbs})
     graph.append({
         "@type": "WebPage", "@id": root_url + "#webpage", "url": root_url, "name": page["title"],
-        "description": page["desc"], "inLanguage": "he-IL", "dateModified": UPDATED,
+        "description": page["desc"], "inLanguage": "he-IL", "dateModified": page.get("updated", UPDATED),
         "about": {"@id": f"{SITE}/#business"},
         "primaryImageOfPage": f"{SITE}/images/{page['img']}.webp",
     })
+    for extra in page.get("schema_extra", []):
+        graph.append(extra)
     if page.get("faq"):
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}

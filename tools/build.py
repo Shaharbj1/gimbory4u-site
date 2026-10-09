@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os, shutil
-from gen_lib import render, SITE, UPDATED
+from gen_lib import render, SITE, UPDATED, INDEXNOW_KEY
 from pages_topics import TOPICS
 from pages_cities import CITY_PAGES, AREAS, ACCESS
-from pages_index import INDEX_PAGES, INDEX
+from pages_index import INDEX_PAGES, INDEX, ARTICLE_PAGES
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public")
 PAGES = TOPICS + [AREAS] + CITY_PAGES + INDEX_PAGES + [ACCESS]
@@ -48,7 +48,7 @@ for p in PAGES:
     img = f"{SITE}/images/{p['img']}.webp"
     urls.append(f"""  <url>
     <loc>{loc}</loc>
-    <lastmod>{UPDATED}</lastmod>
+    <lastmod>{p.get("updated", UPDATED)}</lastmod>
     <image:image><image:loc>{img}</image:loc></image:image>
   </url>""")
 open(f"{OUT}/sitemap.xml", "w", encoding="utf-8").write(
@@ -68,6 +68,9 @@ lines = ["# Gimbory4U – השכרת ג'ימבורי לפעוטות", "",
 for p in TOPICS + [AREAS, INDEX]:
     loc = f"{SITE}/" if p["slug"] == "index.html" else f"{SITE}/{p['slug']}"
     lines.append(f"- [{p['h1']}]({loc}): {p['desc']}")
+lines += ["", "## מאמרים להורים לפעוטות"]
+for p in ARTICLE_PAGES:
+    lines.append(f"- [{p['h1']}]({SITE}/{p['slug']}): {p['desc']}")
 lines += ["", "## ערים (עד 30 ק\"מ מקריית עקרון)"]
 for p in CITY_PAGES:
     lines.append(f"- [{p['h1']}]({SITE}/{p['slug']})")
@@ -81,8 +84,14 @@ for sub in ("css", "js"):
     shutil.copytree(os.path.join(HERE, "static", sub), os.path.join(OUT, sub), dirs_exist_ok=True)
 
 # ── robots.txt ──
+AI_BOTS = ["Googlebot", "Bingbot", "Google-Extended", "GPTBot", "OAI-SearchBot", "ChatGPT-User",
+           "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Applebot-Extended"]
 open(f"{OUT}/robots.txt", "w", encoding="utf-8").write(
-    "User-agent: *\nAllow: /\n\nSitemap: https://gimbory4u.co.il/sitemap.xml\n")
+    "".join(f"User-agent: {b}\n" for b in AI_BOTS) + "Allow: /\n\n"
+    "User-agent: *\nAllow: /\n\n"
+    "Sitemap: https://gimbory4u.co.il/sitemap.xml\n")
+# IndexNow key file (Bing, Yandex and other IndexNow engines)
+open(f"{OUT}/{INDEXNOW_KEY}.txt", "w", encoding="utf-8").write(INDEXNOW_KEY)
 
 # ── _redirects (Cloudflare Workers static assets) ──
 from urllib.parse import quote
