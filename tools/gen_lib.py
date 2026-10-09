@@ -133,7 +133,7 @@ def page_schema(page, root_url):
 #  white article card, blue CTA band, dark footer.
 #  One keyword-named image per page (home: + small gallery).
 # ============================================================
-ASSET_V = "20261007a"   # bump to bust Hostinger CDN cache
+ASSET_V = "20261009c"   # bump to bust Hostinger CDN cache
 
 PACKAGES = [
     {"name": "חבילה בסיסית", "price": 300, "featured": False, "key": "basic",

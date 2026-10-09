@@ -3,9 +3,10 @@ import os, shutil
 from gen_lib import render, SITE, UPDATED
 from pages_topics import TOPICS
 from pages_cities import CITY_PAGES, AREAS, ACCESS
+from pages_index import INDEX_PAGES, INDEX
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public")
-PAGES = TOPICS + [AREAS] + CITY_PAGES + [ACCESS]
+PAGES = TOPICS + [AREAS] + CITY_PAGES + INDEX_PAGES + [ACCESS]
 BY_SLUG = {p["slug"]: p for p in PAGES}
 
 # sanity: every related link must exist
@@ -26,6 +27,7 @@ GUIDES_FOOTER = [
     ("pages/gimboree-kindergarten.html", "ג'ימבורי לגן ולמעון"),
     ("pages/gimboree-vs-inflatable.html", "ג'ימבורי או מתנפח"),
     ("pages/toddler-birthday-checklist.html", "צ'קליסט יום הולדת"),
+    ("pages/playgrounds-index.html", "אינדקס משחקיות לילדים"),
 ]
 
 # footer city links: "השכרת ג'ימבורי <city>" – strip preposition form
@@ -63,7 +65,7 @@ lines = ["# Gimbory4U – השכרת ג'ימבורי לפעוטות", "",
          "safety mats and ball pits for toddler birthday parties at home, with self-pickup from Kiryat Ekron. "
          "Category: equipment / party rental (not games).", "",
          "## עמודים עיקריים"]
-for p in TOPICS + [AREAS]:
+for p in TOPICS + [AREAS, INDEX]:
     loc = f"{SITE}/" if p["slug"] == "index.html" else f"{SITE}/{p['slug']}"
     lines.append(f"- [{p['h1']}]({loc}): {p['desc']}")
 lines += ["", "## ערים (עד 30 ק\"מ מקריית עקרון)"]
